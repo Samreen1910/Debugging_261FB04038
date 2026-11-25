@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusCafe — Student Order Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header.topbar {
+      background-color: #4caf50;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .brand h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    header .cart-pill {
+      background-color: #fff;
+      color: #4caf50;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+    }
+
+    .container {
+      padding: 1rem;
+    }
+
+    .controls {
+      margin-bottom: 1rem;
+    }
+
+    .filter-btn {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background-color: #388e3c;
+    }
+
+    .menu-item {
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .menu-item img {
+      width: 200px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .menu-item button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .menu-item button:hover {
+      background-color: #388e3c;
+    }
+
+    .checkout-btn {
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+      display: block;
+      text-align: center;
+    }
+
+    .checkout-btn:hover {
+      background-color: #e64a19;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>CampusCafe</h1>
+      <p>Fresh snacks &amp; coffee between lectures</p>
+    </div>
+    <div class="cart-pill">
+      Cart: <span id="cart-count">0</span> items
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="controls">
+        <div class="filter-group">
+          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn" data-category="coffee">Coffee</button>
+          <button class="filter-btn" data-category="snacks">Snacks</button>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtHO98ebb559chzTw8eP9ZaeLZwr3h70NaxQ66SUO4_A&s" alt="Coffee" />
+        <p>Freshly brewed coffee</p>
+        <button class="add-to-cart" data-item="Coffee">Add to Cart</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS4v1Yz0gjB8JHpHQ0gOPM3x5FOo0cMIwC5b4yYQRgX1qv4ixCWhS2QCJa&s=10" alt="Snacks" />
+        <p>Delicious snacks</p>
+        <button class="add-to-cart" data-item="Snacks">Add to Cart</button>
+      </div>
+    </section>
+    <button class="checkout-btn" id="checkout-btn">Checkout</button>
+  </main>
+
+  <script>
+    // JavaScript to handle cart functionality
+    let cartCount = 0;
+
+    // Add event listeners to "Add to Cart" buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', () => {
+        cartCount++;
+        document.getElementById('cart-count').textContent = cartCount;
+        alert(`${button.dataset.item} added to cart!`);
+      });
+    });
+
+    // Checkout button functionality
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      if (cartCount > 0) {
+        alert(`You have ${cartCount} items in your cart. Proceeding to checkout...`);
+      } else {
+        alert('Your cart is empty. Add items to proceed.');
+      }
+    });
+  </script>
+</body>
+</html>
